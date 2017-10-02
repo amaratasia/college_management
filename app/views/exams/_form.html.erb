@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :department_id %>
-    <%= form.select(:department_id, options_for_select(Department.all.map{|x| [x.name, x.id]}, exam.try(:department_id)),{},{ class: "form-control full_width"} ) %>
+    <%= form.select(:department_id, options_for_select(Department.all.map{|x| [x.name, x.id]}, exam.try(:department_id)),{ :include_blank => '-- Select One --' },{ class: "form-control full_width"} ) %>
   </div>
   <br />
   <div class="actions">

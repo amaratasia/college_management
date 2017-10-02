@@ -21,7 +21,7 @@
         <td><%= score.subject.name %></td>
         <td><%= score.mark %></td>
         <td><%= score.semester %></td>
-        <td><%= score.user.name %></td>
+        <td><%= link_to score.user.name, user_path(score.user_id) %></td>
         <td><%= link_to 'Show', score %></td>
         <td><%= link_to 'Edit', edit_score_path(score) %></td>
       </tr>

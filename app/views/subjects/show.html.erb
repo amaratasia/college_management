@@ -1,23 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+	<div class="form-group">
   <strong>Name:</strong>
-  <%= @subject.name %>
+  <p class='form-control half_width'> <%= @subject.name %> </p>
+</div>
 </p>
 
 <p>
   <strong>Subject code:</strong>
-  <%= @subject.subject_code %>
+  <p class='form-control' style="width: 50%"> <%= @subject.subject_code %> </p>
 </p>
 
 <p>
   <strong>Department:</strong>
-  <%= @subject.department.name %>
+  <p class='form-control half_width'> <%= @subject.department.name %> </p>
 </p>
 
 <p>
   <strong>Weightage:</strong>
-  <%= @subject.weightage %>
+  <p class='form-control half_width'> <%= @subject.weightage %> </p>
 </p>
 
 <%= link_to 'Edit', edit_subject_path(@subject) %> |

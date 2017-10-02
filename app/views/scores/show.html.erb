@@ -2,27 +2,27 @@
 
 <p>
   <strong>Exam:</strong>
-  <%= @score.exam.name %>
+  <p class='form-control half_width'> <%= @score.exam.name %>
 </p>
 
 <p>
   <strong>Subject:</strong>
-  <%= @score.subject.name %>
+  <p class='form-control half_width'> <%= @score.subject.name %>
 </p>
 
 <p>
   <strong>Mark:</strong>
-  <%= @score.mark %>
+  <p class='form-control half_width'> <%= @score.mark %>
 </p>
 
 <p>
   <strong>Semester:</strong>
-  <%= @score.semester %>
+  <p class='form-control half_width'> <%= @score.semester %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @score.user.name %>
+  <p class='form-control half_width'> <%= @score.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_score_path(@score) %> |
