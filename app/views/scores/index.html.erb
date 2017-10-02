@@ -15,6 +15,9 @@
   </thead>
 
   <tbody>
+    <% if @scores.blank? %>
+      <td colspan="7" style="text-align: center;">No Data Found</td>
+    <% end %>
     <% @scores.each do |score| %>
       <tr>
         <td><%= score.exam.name %></td>
