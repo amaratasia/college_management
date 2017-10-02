@@ -1,24 +1,21 @@
-# README
+* Ruby version: Ruby 2.2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Rails version: 5.1.4
 
-Things you may want to cover:
+* Database: PostgreSQL
 
-* Ruby version
+* Database creation: rake db:setup
 
-* System dependencies
+* Developer: Amar A. 
 
-* Configuration
+Connect with the Developer at 
 
-* Database creation
+* Facebook: https://www.facebook.com/amaratasia
 
-* Database initialization
+* LinkedIn: https://www.linkedin.com/in/amaratasia
 
-* How to run the test suite
+* GitHub: https://github.com/amaratasia
 
-* Services (job queues, cache servers, search engines, etc.)
+* Gmail: amaratasia@gmail.com
 
-* Deployment instructions
-
-* ...
+* Yahoo: amaratasia@yahoo.co.in
