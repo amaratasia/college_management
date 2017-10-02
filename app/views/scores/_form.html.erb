@@ -1,0 +1,42 @@
+<%= form_with(model: score, local: true) do |form| %>
+  <% if score.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(score.errors.count, "error") %> prohibited this score from being saved:</h2>
+
+      <ul>
+      <% score.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :exam_id %>
+    <%= form.select(:exam_id, options_for_select(exams, score.exam_id), { :include_blank => '-- Select One --' },{ class: "form-control", required: true} )%>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject_id %>
+    <%= form.select(:subject_id, options_for_select(Subject.all.map{|x| [x.name, x.id]}, score.subject_id),{ :include_blank => '-- Select One --' },{ class: "form-control", required: true} )%>
+  </div>
+
+  <div class="field">
+    <%= form.label :mark %>
+    <%= form.text_field :mark, id: :score_mark %>
+  </div>
+
+  <div class="field">
+    <%= form.label :semester %>
+    <%= form.select(:semester, options_for_select([1,2,3,4,5,6,7,8], score.semester),{ :include_blank => '-- Select One --' },{ class: "form-control", required: true} )%>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.select(:user_id, options_for_select(User.all.map{|x| ["#{x.name}-#{x.department.name}-#{x.year_of_adm}", x.id]}),{ :include_blank => '-- Select User --' },{ class: "form-control", required: true} )%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

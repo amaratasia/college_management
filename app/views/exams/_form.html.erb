@@ -1,0 +1,27 @@
+<%= form_with(model: exam, local: true) do |form| %>
+  <% if exam.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
+
+      <ul>
+      <% exam.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :exam_name, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :department_id %>
+    <%= form.select(:department_id, options_for_select(Department.all.map{|x| [x.name, x.id]}, exam.try(:department_id)),{},{ class: "form-control full_width"} ) %>
+  </div>
+  <br />
+  <div class="actions">
+    <%= form.submit 'Submit',class: 'btn btn-default' %>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Scores</h1>
+
+<table class='index col-md-12'>
+  <thead>
+    <tr>
+      <th>Exam</th>
+      <th>Subject</th>
+      <th>Mark</th>
+      <th>Semester</th>
+      <th>User</th>
+      <th colspan="2">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scores.each do |score| %>
+      <tr>
+        <td><%= score.exam.name %></td>
+        <td><%= score.subject.name %></td>
+        <td><%= score.mark %></td>
+        <td><%= score.semester %></td>
+        <td><%= score.user.name %></td>
+        <td><%= link_to 'Show', score %></td>
+        <td><%= link_to 'Edit', edit_score_path(score) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Score', new_score_path %>
