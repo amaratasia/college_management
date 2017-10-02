@@ -22,6 +22,6 @@ development:
 
 production:
   <<: *default
-  database: <%= ENV["DATABASE_NAME"] %>
-  username: <%= ENV["DATABASE_USER"] %>
-  password: <%= ENV["DATABASE_PASS"] %>
+  database: college
+  host: 127.0.0.1
+  encoding: unicode
