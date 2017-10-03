@@ -25,5 +25,10 @@
   <p class='form-control half_width'> <%= @score.user.name %>
 </p>
 
+<p>
+  <strong>Date of Exam:</strong>
+  <p class='form-control half_width'> <%= @score.date_of_exam.to_date %>
+</p>
+
 <%= link_to 'Edit', edit_score_path(@score) %> |
 <%= link_to 'Back', scores_path %>

@@ -81,6 +81,7 @@ class ScoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def score_params
-      params.require(:score).permit(:exam_id, :subject_id, :mark, :semester, :user_id)
+      params[:score][:date_of_exam] = params[:score][:date_of_exam].to_date
+      params.require(:score).permit(:exam_id, :subject_id, :mark, :semester, :user_id, :date_of_exam)
     end
 end

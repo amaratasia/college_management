@@ -1,3 +1,4 @@
+<div style="width: 50%">
 <%= form_with(model: score, local: true) do |form| %>
   <% if score.errors.any? %>
     <div id="error_explanation">
@@ -11,32 +12,38 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class=form-group>
     <%= form.label :exam_id %>
     <%= form.select(:exam_id, options_for_select(exams, score.exam_id), { :include_blank => '-- Select One --' },{ class: "form-control", required: true} )%>
   </div>
 
-  <div class="field">
+  <div class=form-group>
     <%= form.label :subject_id %>
     <%= form.select(:subject_id, options_for_select(Subject.all.map{|x| [x.name, x.id]}, score.subject_id),{ :include_blank => '-- Select One --' },{ class: "form-control", required: true} )%>
   </div>
 
-  <div class="field">
+  <div class=form-group>
     <%= form.label :mark %>
-    <%= form.text_field :mark, id: :score_mark %>
+    <%= form.text_field :mark, placeholder: "Enter Score", class: "form-control", required: true %>
   </div>
 
-  <div class="field">
+  <div class=form-group>
     <%= form.label :semester %>
     <%= form.select(:semester, options_for_select([1,2,3,4,5,6,7,8], score.semester),{ :include_blank => '-- Select One --' },{ class: "form-control", required: true} )%>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.select(:user_id, options_for_select(User.all.map{|x| ["#{x.name}-#{x.department.name}-#{x.year_of_adm}", x.id]}),{ :include_blank => '-- Select User --' },{ class: "form-control", required: true} )%>
+  <div class=form-group>
+    <%= form.label :date_of_exam %>
+    <%= form.text_field :date_of_exam, value: score.date_of_exam, placeholder: 'DD/MM/YYYY', class: "form-control", required: true %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class=form-group>
+    <%= form.label :user_id %>
+    <%= form.select(:user_id, options_for_select(User.all.map{|x| ["#{x.name}-#{x.department.name}-#{x.year_of_adm}", x.id]},score.user_id),{ :include_blank => '-- Select User --' },{ class: "form-control", required: true} )%>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Submit", class: 'btn btn-default' %>
   </div>
 <% end %>
+</div>
