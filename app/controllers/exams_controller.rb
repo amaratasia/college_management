@@ -1,15 +1,18 @@
 class ExamsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
 
   # GET /exams
   # GET /exams.json
   def index
-    @exams = Exam.all
+    @exams = Exam.includes(:department).all
+    @exams = @exams.where(:department_id=> current_user.department_id) if current_user.teacher?
   end
 
   # GET /exams/1
   # GET /exams/1.json
   def show
+    raise CanCan::AccessDenied if ((@exam.department_id != current_user.department_id) && !current_user.admin?)
   end
 
   # GET /exams/new

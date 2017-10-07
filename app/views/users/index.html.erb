@@ -1,32 +1,30 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Users</h1>
-
 <table class='index col-md-12'>
   <thead>
     <tr>
+      <th class="col-md-1">Role</th>
       <th class="col-md-2">Name</th>
       <th class="col-md-2">Reg number</th>
       <th class="col-md-2">Phone</th>
       <th class="col-md-2">Year of Admission</th>
-      <th class="col-md-2">Department</th>
+      <th class="col-md-1">Department</th>
       <th class="col-md-2" colspan="2">Action</th>
     </tr>
   </thead>
-
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.reg_number %></td>
-        <td><%= user.phone %></td>
-        <td><%= user.year_of_adm %></td>
-        <td><%= user.department.name %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      </tr>
+    <tr>
+      <td><%= user.role_name.humanize %></td>
+      <td><%= user.name.humanize %></td>
+      <td><%= user.reg_number %></td>
+      <td><%= user.phone %></td>
+      <td><%= user.year_of_adm %></td>
+      <td><%= user.department.name %></td>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>

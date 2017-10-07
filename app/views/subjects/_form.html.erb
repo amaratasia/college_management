@@ -13,25 +13,25 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :subject_name, required: true %>
+    <%= form.text_field :name, id: :subject_name, required: true,class: "form-control half_width" %>
   </div>
 
   <div class="field">
     <%= form.label :subject_code %>
-    <%= form.text_field :subject_code, id: :subject_subject_code, required: true %>
+    <%= form.text_field :subject_code, id: :subject_subject_code, required: true,class: "form-control half_width" %>
   </div>
 
   <div class="field">
     <%= form.label :department_id %>
-    <%= form.select(:department_id, options_for_select(Department.all.map{|x| [x.name, x.id]}, subject.try(:department_id)),{ :include_blank => '-- Select One --' },{ class: "form-control full_width", required: true} ) %>
+    <%= form.select(:department_id, options_for_select(Department.all.map{|x| [x.name, x.id]}, subject.try(:department_id)),{ :include_blank => '-- Select One --' },{ class: "form-control half_width", required: true} ) %>
   </div>
 
   <div class="field">
     <%= form.label :weightage %>
-    <%= form.number_field :weightage, id: :subject_weightage, required: true %>
+    <%= form.number_field :weightage, id: :subject_weightage,class: "form-control half_width", required: true %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit "Submit", class: 'btn btn-default'%>
   </div>
 <% end %>

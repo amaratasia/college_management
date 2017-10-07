@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :scores
   resources :subjects
   devise_for :users
-  resources :users, only: [:index, :edit, :update]
+  resources :users, only: [:index, :edit, :update, :show]
   resources :exams
 
   root 'home#index'

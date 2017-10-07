@@ -1,36 +1,47 @@
 class ScoresController < ApplicationController
+  load_and_authorize_resource
   before_action :set_score, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /scores
   # GET /scores.json
   def index
-    @scores = Score.all.semester_ilike(params[:semester])
+    if current_user.user?
+      @scores = current_user.scores.semester_ilike(params[:semester]) 
+    elsif current_user.teacher?
+      @scores = Score.joins(:subject=>:department).semester_ilike(params[:semester])
+      @scores = @scores.where('departments.id = ?', current_user.department_id)
+    else
+      @scores = Score.all
+    end
   end
 
   # GET /scores/1
   # GET /scores/1.json
   def show
+        raise CanCan::AccessDenied if ((@score.department.id != current_user.department_id) && !current_user.admin?)
   end
 
   # GET /scores/new
   def new
     @exams = Exam.all
-    if params[:department]
-      department_id = Department.find_by_name(params[:department])
-      @exams = Exam.where(:department_id => department_id)
-    end
+    @subjects = Subject.all
+    @subjects = @subjects.where(department_id: current_user.department_id) if !current_user.admin?
+    @subjects = @subjects.map{|x| [x.name, x.id]}
+    @exams = @exams.where(department_id: current_user.department_id) if !current_user.admin?
     @exams = @exams.map{|x| [x.name, x.id]}
+    @users = User.user
+    @users = @users.where(:department_id => current_user.department_id) if !current_user.admin?
+    @users = @users.map{|x| ["#{x.name}-#{x.department.name}-#{x.year_of_adm}", x.id]}
     @score = Score.new
   end
 
   # GET /scores/1/edit
   def edit
     @exams = Exam.all
-    if params[:department]
-      department_id = Department.find_by_name(params[:department])
-      @exams = Exam.where(:department_id => department_id)
-    end
     @exams = @exams.map{|x| [x.name, x.id]}
+    @users = User.user
+    @users = @users.where(:department_id => current_user.department_id) if !current_user.admin?
+    @users = @users.map{|x| ["#{x.name}-#{x.department.name}-#{x.year_of_adm}", x.id]}
   end
 
   # POST /scores

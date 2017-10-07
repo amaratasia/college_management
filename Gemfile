@@ -12,6 +12,7 @@ gem 'rails', '~> 5.1.4'
 gem 'pg'
 
 gem 'devise'
+gem 'cancancan', '~> 2.0'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 # Use Puma as the app server

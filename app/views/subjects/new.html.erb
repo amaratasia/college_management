@@ -1,5 +1,42 @@
 <h1>New Subject</h1>
+<div style="width: 50%; min-width: 400px;">
+<%= form_with(model: @subject, local: true) do |form| %>
+  <% if @subject.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(subject.errors.count, "error") %> prohibited this @subject from being saved:</h2>
 
-<%= render 'form', subject: @subject %>
+      <ul>
+      <% @subject.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Back', subjects_path %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :subject_name, required: true, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject_code %>
+    <%= form.text_field :subject_code, id: :subject_subject_code, required: true, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :department_id %>
+    <%= form.select(:department_id, options_for_select(Department.all.map{|x| [x.name, x.id]}, current_user.department_id),{ :include_blank => '-- Select One --' },{ class: "form-control", required: true, disabled: (current_user.admin? ? false : true)} ) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weightage %>
+    <%= form.number_field :weightage, id: :subject_weightage, required: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Submit", class: "btn btn-default" %>
+  </div>
+<% end %>
+</div>
+
+<%= link_to 'Back', @subjects_path %>

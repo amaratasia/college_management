@@ -1,19 +1,23 @@
 class SubjectsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = Subject.includes(:department)
+    @subjects = @subjects.where(:department_id=> current_user.department_id) if current_user.teacher?
   end
 
   # GET /subjects/1
   # GET /subjects/1.json
   def show
+    raise CanCan::AccessDenied if ((@subject.department_id != current_user.department_id) && !current_user.admin?)
   end
 
   # GET /subjects/new
   def new
+    
     @subject = Subject.new
   end
 

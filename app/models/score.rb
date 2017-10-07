@@ -5,4 +5,8 @@ class Score < ApplicationRecord
 
   scope :semester_ilike,  ->(semester)    { where("#{self.to_s.downcase.pluralize}.semester = ?", semester)  if semester.present? }
 
+
+  def department
+  	self.subject.department
+  end
 end
