@@ -11,12 +11,6 @@
   <body>
   	<%= render 'shared/navbar' %>
   	<div class="container">
-      <legend>
-        <%= link_to "Users", users_path%> |
-        <%= link_to "Subject", subjects_path%> |
-        <%= link_to "Exam", exams_path%> |
-        <%= link_to "Score", scores_path%>
-      </legend>
       <% flash.each do |key, value| %>
             <legend><center><u><%= value %></u></center></legend>
     <% end %>

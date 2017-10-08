@@ -1,0 +1,22 @@
+<h3>User Report</h3>
+
+<table class="index" border=1>
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Registration Number</th>
+		<th>Phone</th>
+		<th>Year of Admission</th>
+		<th>Department</th>
+	</tr>
+	<%user_data.each do |user|%>
+	<tr>
+		<td><%=user.name%></td>
+		<td><%=user.email%></td>
+		<td><%=user.reg_number%></td>
+		<td><%=user.phone%></td>
+		<td><%=user.year_of_adm%></td>
+		<td><%=user.department.name%></td>
+	</tr>
+	<%end%>
+</table>

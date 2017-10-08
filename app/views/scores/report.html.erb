@@ -1,0 +1,31 @@
+<table border=2 class='index col-md-12' style="width: 100%">
+  <thead>
+    <tr>
+      <th>Exam</th>
+      <th>Subject</th>
+      <th>Mark</th>
+      <th>Semester</th>
+      <th>User</th>
+      <th>Date of Exam</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if result_data[:total].blank? %>
+      <td colspan="7" style="text-align: center;">No Data Found</td>
+    <% end %>
+    <% (result_data[:total]).each do |score| %>
+      <tr>
+        <td><%= score.exam.name %></td>
+        <td><%= score.subject.name %></td>
+        <td><%= score.mark %></td>
+        <td><%= score.semester %></td>
+        <td><%= score.user.name%></td>
+        <td><%= score.date_of_exam.try(:to_date) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<b>  Total Students: </b> : <%=result_data[:total].length%>
+<br>
+<b>  Passed Students: </b> : <%=result_data[:pass].length%>

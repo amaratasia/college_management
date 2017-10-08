@@ -10,7 +10,8 @@ end
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
-
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'devise'
 gem 'cancancan', '~> 2.0'
 

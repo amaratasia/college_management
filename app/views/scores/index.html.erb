@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Scores</h1>
+<%= link_to "Download PDF", { :action => "index", :format => :pdf }, target: '_blank', class: 'btn pull-right'%>
+<%= form_tag('/scores', method: :get) do %>
+<%= select_tag :batch, options_for_select([2017, 2018, 2019, 2020], params[:batch]),{:prompt => "--Select Batch--",class: "soflow", :onchange => "this.form.submit();" }%>
+<%= select_tag :semester, options_for_select([1,2,3,4,5,6,7,8], params[:semester]),{:prompt => "--Select Semester--",class: "soflow", :onchange => "this.form.submit();" }%>
+<% end %>
 
 <table class='index col-md-12'>
   <thead>

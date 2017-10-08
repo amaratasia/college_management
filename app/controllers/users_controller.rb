@@ -5,6 +5,13 @@ class UsersController < ApplicationController
   def index
     @users = User.includes(:department).all
     @users = @users.where(:department_id=> current_user.department_id) if current_user.teacher?
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = WickedPdf.new.pdf_from_string(UsersController.new.render_to_string(:action => "/report", :page_height => '5in', :page_width => '7in', :layout => false, locals: {user_data: @users }))
+        send_data(pdf, :filename => Time.now.to_i.to_s+".pdf", :disposition => 'attachment')
+      end
+    end
   end
 
   def show

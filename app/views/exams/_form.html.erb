@@ -1,3 +1,4 @@
+<div style="width: 50%; min-width: 350px !important;">
 <%= form_with(model: exam, local: true) do |form| %>
   <% if exam.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +14,7 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :exam_name, required: true %>
+    <%= form.text_field :name, id: :exam_name, required: true, class: "form-control" %>
   </div>
 
   <div class="field">
@@ -25,3 +26,4 @@
     <%= form.submit 'Submit',class: 'btn btn-default' %>
   </div>
 <% end %>
+</div>

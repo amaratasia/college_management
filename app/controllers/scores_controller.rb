@@ -6,12 +6,20 @@ class ScoresController < ApplicationController
   # GET /scores.json
   def index
     if current_user.user?
-      @scores = current_user.scores.semester_ilike(params[:semester]) 
+      @scores = current_user.scores 
     elsif current_user.teacher?
-      @scores = Score.joins(:subject=>:department).semester_ilike(params[:semester])
-      @scores = @scores.where('departments.id = ?', current_user.department_id)
+      @scores = Score.joins(:subject=>:department).where('departments.id = ?', current_user.department_id)
     else
       @scores = Score.all
+    end
+    @scores = @scores.batch_is(params[:batch]).semester_is(params[:semester])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        result_summary = {pass: @scores.select{|x| x.mark.to_i > 30}, total: @scores}
+        pdf = WickedPdf.new.pdf_from_string(ScoresController.new.render_to_string(:action => "/report", :page_height => '5in', :page_width => '7in', :layout => false, locals: {result_data: result_summary}))
+        send_data(pdf, :filename => Time.now.to_i.to_s+".pdf", :disposition => 'attachment')
+      end
     end
   end
 
